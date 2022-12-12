@@ -6,5 +6,5 @@ export const loadFile = async (path: string) => {
 };
 
 export const writeFile = async (path: string, fileString: string) => {
-    await fs.writeFile(path, fileString);
+  await fs.writeFile(path, fileString);
 };

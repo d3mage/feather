@@ -11,13 +11,11 @@ export const generateTypes = (structs: ScrappedStruct[]): string => {
 
 const structToString = (struct: ScrappedStruct): string => {
   let variablesString = '';
-  for (const member of struct.fields) {
-    if (member.dataType.type == 'ElementaryTypeName') {
-      variablesString += `
-        { name: '${member.name}', type: '${member.dataType.name}' },`;
-    } else if (member.dataType.type == 'ArrayTypeName') {
-      variablesString += `
-        { name: '${member.name}', type: '${member.dataType.baseTypeName?.name}' },`;
+  for (const field of struct.fields) {
+    if (field.dataType.type == 'ElementaryTypeName') {
+      variablesString += `\n  { name: '${field.name}', type: '${field.dataType.name}' },`;
+    } else if (field.dataType.type == 'ArrayTypeName') {
+      variablesString += `\n  { name: '${field.name}', type: '${field.dataType.baseTypeName?.name}' },`;
     }
   }
   const resultString = `export const ${struct.structName}Type: Array<TypedDataField> = [${variablesString}\n];\n`;

@@ -8,7 +8,6 @@ export interface ScrappedField {
   name: string;
 }
 
-
 export interface InitialStruct {
   name: string;
   members: InitialField[];
