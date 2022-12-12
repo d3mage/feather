@@ -1,13 +1,17 @@
 import { writeFile, loadFile } from './utils/file-interaction';
-import { join } from 'path';
 import { parseStructs } from './utils/parse';
-import { generateTypes } from './signatures/generate-eip712-types';
+import { generateTypes, generateHashingFunctions } from './signatures';
 
 const main = async () => {
-    const file = await loadFile(join(__dirname, '../contracts/Structs.sol'));
-    const structs = parseStructs(file);
-    const types = generateTypes(structs);
-    await writeFile(join(__dirname, '../output/types.ts'), types);
-}
+  const file = await loadFile('./contracts/Structs.sol');
+  //todo: const solidityVersion = parseSolidityVersion(file);
+  const structs = parseStructs(file);
+  //todo: check if folders exist
+  const types = generateTypes(structs);
+  await writeFile('./output/typescript/types.ts', types);
+
+  const hashingFunctions = generateHashingFunctions(structs);
+  await writeFile('./output/solidity/StructHasher.sol', hashingFunctions);
+};
 
 main();
