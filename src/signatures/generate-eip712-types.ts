@@ -1,6 +1,6 @@
-import { Struct } from '../types';
+import { ScrappedStruct } from '../types';
 
-export const generateTypes = (structs: Struct[]): string => {
+export const generateTypes = (structs: ScrappedStruct[]): string => {
   let resultString = `import { TypedDataField } from '@ethersproject/abstract-signer';`;
   resultString += domain;
   for (const struct of structs) {
@@ -9,19 +9,18 @@ export const generateTypes = (structs: Struct[]): string => {
   return resultString;
 };
 
-const structToString = (struct: Struct): string => {
+const structToString = (struct: ScrappedStruct): string => {
   let variablesString = '';
-  for (const member of struct.members) {
-    console.log(member);
-    if (member.typeName.type == 'ElementaryTypeName') {
+  for (const member of struct.fields) {
+    if (member.dataType.type == 'ElementaryTypeName') {
       variablesString += `
-        { name: '${member.name}', type: '${member.typeName.name}' },`;
-    } else if (member.typeName.type == 'ArrayTypeName') {
+        { name: '${member.name}', type: '${member.dataType.name}' },`;
+    } else if (member.dataType.type == 'ArrayTypeName') {
       variablesString += `
-        { name: '${member.name}', type: '${member.typeName.baseTypeName?.name}' },`;
+        { name: '${member.name}', type: '${member.dataType.baseTypeName?.name}' },`;
     }
   }
-  const resultString = `export const ${struct.name}Type: Array<TypedDataField> = [${variablesString}\n];\n`;
+  const resultString = `export const ${struct.structName}Type: Array<TypedDataField> = [${variablesString}\n];\n`;
   return resultString;
 };
 
