@@ -13,11 +13,13 @@
   },
   "homepage": "https://github.com/d3mage/feather#readme",
   "scripts": {
+    "run": "ts-node src/index.ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "description": "",
   "dependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
     "@openzeppelin/contracts": "^4.8.0",
     "@solidity-parser/parser": "^0.14.5",
     "fs": "^0.0.1-security",
