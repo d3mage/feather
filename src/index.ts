@@ -10,10 +10,10 @@ const main = async () => {
   //todo: check if output folders exist
 //   const types = generateTypes(structs);
 //   await writeFile('./output/typescript/types.ts', types);
-    // const typehashes = generateTypehashes(structs);
-    // await writeFile('./output/solidity/Typehashes.sol', typehashes);
-  const hashingFunctions = generateHashingFunctions(structs);
-  await writeFile('./output/solidity/RecoverSigner.sol', hashingFunctions);
+    const typehashes = generateTypehashes(structs);
+    await writeFile('./output/solidity/Typehashes.sol', typehashes);
+  // const hashingFunctions = generateHashingFunctions(structs);
+  // await writeFile('./output/solidity/RecoverSigner.sol', hashingFunctions);
 };
 
 main();
