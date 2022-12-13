@@ -1,6 +1,7 @@
 export interface ScrappedStruct {
   structName: string;
   fields: ScrappedField[];
+  typehash?: string;
 }
 
 export interface ScrappedField {
