@@ -24,4 +24,3 @@ interface Type {
   name?: string;
   baseTypeName?: ScrappedField;
 }
-

@@ -3,10 +3,10 @@ import { SOLIDITY_HEADER } from './shared';
 
 export const extractTypehashes = (structs: ScrappedStruct[]): string => {
   return ''; //todo: extract typehashes in a separate function which writes typehash to the struct
-}
+};
 
 //todo: refactor it to use {extractTypehashes} method
-export const generateTypehashes = (structs: ScrappedStruct[]): string => { 
+export const generateTypehashes = (structs: ScrappedStruct[]): string => {
   let resultString = SOLIDITY_HEADER;
   for (const struct of structs) {
     const structName = struct.structName;
@@ -23,7 +23,7 @@ export const generateTypehashes = (structs: ScrappedStruct[]): string => {
       }
     }
     const typehash = `${structName.toUpperCase()}_TYPEHASH`;
-    resultString +=`\nbytes32 constant ${typehash} = keccak256("${structName}(${fieldString}");`;
+    resultString += `\nbytes32 constant ${typehash} = keccak256("${structName}(${fieldString}");`;
     struct.typehash = typehash;
   }
   return resultString;
