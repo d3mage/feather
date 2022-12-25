@@ -26,7 +26,7 @@ const generateSingleFunction = (struct: ScrappedStruct): string => {
     const field = struct.fields[i];
     const dataType = field.dataType;
     //todo: check all elementary types
-    fieldString += `\n\t\t\t\t`
+    fieldString += `\n\t\t\t\t`;
     if (dataType.type == 'ElementaryTypeName') {
       if (dataType.name == 'string') {
         fieldString += `keccak256(bytes(params.${field.name}))`;

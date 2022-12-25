@@ -23,7 +23,7 @@ export const generateTypehashes = (structs: ScrappedStruct[]): string => {
       }
     }
     const typehash = `${structName.toUpperCase()}_TYPEHASH`;
-    resultString += `\nbytes32 constant ${typehash} = keccak256("${structName}(${fieldString}");`;
+    resultString += `\nbytes32 constant ${typehash} = keccak256("${structName}(${fieldString})");`;
     struct.typehash = typehash;
   }
   return resultString;
