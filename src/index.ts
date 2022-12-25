@@ -1,19 +1,28 @@
 import { writeFile, loadFile } from './utils/file-interaction';
 import { parseStructs } from './utils/parse';
-import { generateTypes, generateHashingFunctions, generateTypehashes } from './signatures';
+import {
+  generateTypes,
+  generateEIP712Base,
+  generateTypehashes,
+  generateSignMessage,
+} from './signatures';
+import { generateTest } from './signatures/generate-test';
 
 const main = async () => {
   const file = await loadFile('./contracts/Structs.sol');
-  await writeFile('./output/solidity/Structs.sol', file);
   //todo: const solidityVersion = parseSolidityVersion(file);
   const structs = parseStructs(file);
   //todo: check if output folders exist
-//   const types = generateTypes(structs);
-//   await writeFile('./output/typescript/types.ts', types);
-    const typehashes = generateTypehashes(structs);
-    await writeFile('./output/solidity/Typehashes.sol', typehashes);
-  // const hashingFunctions = generateHashingFunctions(structs);
-  // await writeFile('./output/solidity/RecoverSigner.sol', hashingFunctions);
+  const typehashes = generateTypehashes(structs);
+  await writeFile('./contracts/Typehashes.sol', typehashes);
+  const hashingFunctions = generateEIP712Base(structs);
+  await writeFile('./contracts/EIP712Base.sol', hashingFunctions);
+  const types = generateTypes(structs);
+  await writeFile('./test/types.ts', types);
+  const signingFunctions = generateSignMessage(structs);
+  await writeFile('./test/sign-message.ts', signingFunctions);
+  const test = generateTest(structs);
+  await writeFile('./test/eip712.spec.ts', test);
 };
 
 main();
