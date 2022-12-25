@@ -2,16 +2,20 @@
 
 pragma solidity 0.8.17;
 
-//todo: introduce more atomic types
-struct SimpleStructure {
-    address to;
-    uint256 amount;
+struct AtomicStructure {
+    bytes32 bits;
+    uint256 unsignedInt;
+    int256 signedInt;
+    bool boolean;
+    address addr;
 }
 
-//todo: introduce more dynamic types
-struct AdvancedStructure {
-    string message;
-    uint256[] values;
-}
+struct DynamicStructure {
+    bytes bits;
+    string str;
+} 
 
-//todo: introduce struct in a struct
+struct ReferenceStructure {
+    uint256[] arr;
+    DynamicStructure recur;
+}
