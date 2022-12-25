@@ -13,12 +13,14 @@
   },
   "homepage": "https://github.com/d3mage/feather#readme",
   "scripts": {
-    "run": "ts-node src/index.ts",
-    "format": "prettier --write \"src/**/*.ts\"",
+    "build": "npm run generate && npm run format",
+    "generate": "ts-node src/index.ts",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "description": "",
   "dependencies": {
+    "@faker-js/faker": "^7.6.0",
     "@nomicfoundation/hardhat-toolbox": "^2.0.0",
     "@openzeppelin/contracts": "^4.8.0",
     "@solidity-parser/parser": "^0.14.5",
