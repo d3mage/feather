@@ -1,5 +1,5 @@
 export interface ScrappedStruct {
-  structName: string;
+  name: string;
   fields: ScrappedField[];
   typehash?: string;
 }
@@ -22,5 +22,11 @@ interface InitialField {
 interface Type {
   type: string;
   name?: string;
-  baseTypeName?: ScrappedField;
+  baseTypeName?: BaseTypeName;
+  namePath?: string;
+}
+
+interface BaseTypeName {
+  dataType: Type;
+  name: string;
 }
