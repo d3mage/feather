@@ -2,14 +2,17 @@ import { ScrappedStruct } from '../types';
 import { SOLIDITY_HEADER } from './shared';
 
 export const extractTypehashNames = (structs: ScrappedStruct[]) => {
-  for(const struct of structs) {
+  for (const struct of structs) {
     struct.typehash = `${struct.name.toUpperCase()}_TYPEHASH`;
   }
 };
 
-export const extractFields = (struct: ScrappedStruct, structs: ScrappedStruct[]): string => {
+export const extractFields = (
+  struct: ScrappedStruct,
+  structs: ScrappedStruct[],
+): string => {
   let resultString = `${struct.name}(`;
-  let endString = ``; 
+  let endString = ``;
   const length = struct.fields.length;
   for (let i = 0; i < length; ++i) {
     const field = struct.fields[i];
@@ -20,11 +23,11 @@ export const extractFields = (struct: ScrappedStruct, structs: ScrappedStruct[])
       resultString += `${dataType.baseTypeName?.name} ${field.name}`;
     } else if (dataType.type == 'UserDefinedTypeName') {
       const innerStructName = dataType.namePath;
-      const innerStruct = structs.find(x => x.name == innerStructName);
-      if (innerStruct == undefined) { 
+      const innerStruct = structs.find((x) => x.name == innerStructName);
+      if (innerStruct == undefined) {
         throw Error(`${innerStructName} is not found.`);
       }
-      resultString += `${innerStructName} ${field.name}`
+      resultString += `${innerStructName} ${field.name}`;
       endString += extractFields(innerStruct, structs);
     }
     if (i < length - 1) {
@@ -34,7 +37,7 @@ export const extractFields = (struct: ScrappedStruct, structs: ScrappedStruct[])
   resultString += `)`;
   resultString += endString;
   return resultString;
-}
+};
 
 export const generateTypehashes = (structs: ScrappedStruct[]): string => {
   extractTypehashNames(structs);
