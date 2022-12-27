@@ -23,10 +23,16 @@ interface Type {
   type: string;
   name?: string;
   baseTypeName?: BaseTypeName;
+  length?: Length;
   namePath?: string;
 }
 
 interface BaseTypeName {
   dataType: Type;
   name: string;
+}
+
+interface Length {
+  type: string;
+  number: string;
 }
