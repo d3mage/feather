@@ -1,13 +1,7 @@
-# Sample Hardhat Project
+# Feather
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+This project generates EIP-712 Solidity contracts and Typescript tests. To try it out: 
+* Add your desired structures to *Structs.sol*
+* Execute `npm run build` to generate and format files
+* Run `npx hardhat test` to launch Typescript tests using Hardhat
 
-Try running some of the following tasks:
-
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.ts
-```
