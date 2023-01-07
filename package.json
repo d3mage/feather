@@ -1,12 +1,15 @@
 {
-  "name": "feather",
-  "version": "0.2.0",
+  "name": "feather-eip712",
+  "version": "1.0.0",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/d3mage/feather.git"
   },
   "author": "Dmytro Sotnyk d3magexgod@gmail.com",
+  "bin": {
+    "generate-eip": "bin/generate.js"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/d3mage/feather/issues"
