@@ -35,7 +35,7 @@ const generateHashFunction = (struct: ScrappedStruct): string => {
         fieldString += `params.${field.name}`;
       }
     } else if (dataType.type == 'ArrayTypeName') {
-      fieldString += `abi.encodePacked(params.${field.name})`;
+      fieldString += `keccak256(abi.encodePacked(params.${field.name}))`;
     } else if (dataType.type == 'UserDefinedTypeName') {
       fieldString += `hash${dataType.namePath}(params.${field.name})`;
     }

@@ -16,7 +16,7 @@ const generateSingleType = (struct: ScrappedStruct): string => {
     if (dataType.type == 'ElementaryTypeName') {
       variablesString += `\n  { name: '${field.name}', type: '${dataType.name}' },`;
     } else if (dataType.type == 'ArrayTypeName') {
-      variablesString += `\n  { name: '${field.name}', type: '${dataType.baseTypeName?.name}' },`;
+      variablesString += `\n  { name: '${field.name}', type: '${dataType.baseTypeName?.name}[]' },`;
     } else if (dataType.type == 'UserDefinedTypeName') {
       variablesString += `\n  { name: '${field.name}', type: '${dataType.namePath}' },`;
     }

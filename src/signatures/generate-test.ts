@@ -3,6 +3,7 @@ import {
   generateAddressData,
   generateBoolData,
   generateBytesData,
+  generateHexData,
   generateStringData,
   generateUintData,
 } from '../utils';
@@ -78,9 +79,13 @@ const generateParamsData = (
     } else if (dataType.type == 'ArrayTypeName') {
       let length =
         dataType.length?.number != undefined ? dataType.length.number : 5;
+      let typeName = dataType.baseTypeName?.name.includes('int')
+        ? 'hex'
+        : dataType.baseTypeName?.name;
       let arrayString = '';
+
       for (let i = 0; i < length; ++i) {
-        arrayString += generateElementaryData(dataType.baseTypeName?.name);
+        arrayString += generateElementaryData(typeName);
         arrayString += `,`;
       }
       resultString += `[${arrayString}]`;
@@ -113,6 +118,8 @@ const generateElementaryData = (dataTypeName: string | undefined): string => {
     return `"${generateAddressData()}"`;
   } else if (dataTypeName == 'string') {
     return `"${generateStringData()}"`;
+  } else if (dataTypeName == 'hex') {
+    return `${generateHexData()}`;
   } else {
     throw Error(`Invalid datatype: ${dataTypeName}`);
   }

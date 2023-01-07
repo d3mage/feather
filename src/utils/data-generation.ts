@@ -4,8 +4,12 @@ export const generateBytesData = (bytesNumber: number): string => {
   return faker.datatype.hexadecimal({ length: bytesNumber * 2 });
 };
 
-export const generateUintData = (): number => {
-  return faker.datatype.number({ max: 1e4 });
+export const generateUintData = (max: number = 1e4): number => {
+  return faker.datatype.number({ max });
+};
+
+export const generateHexData = (): string => {
+  return '0x' + generateUintData(1e2);
 };
 
 export const generateBoolData = (): boolean => {
@@ -13,7 +17,7 @@ export const generateBoolData = (): boolean => {
 };
 
 export const generateAddressData = (): string => {
-  return '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266';
+  return faker.finance.ethereumAddress();
 };
 
 export const generateStringData = (): string => {

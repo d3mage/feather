@@ -20,7 +20,7 @@ export const extractFields = (
     if (dataType.type == 'ElementaryTypeName') {
       resultString += `${dataType.name} ${field.name}`;
     } else if (dataType.type == 'ArrayTypeName') {
-      resultString += `${dataType.baseTypeName?.name} ${field.name}`;
+      resultString += `${dataType.baseTypeName?.name}[] ${field.name}`;
     } else if (dataType.type == 'UserDefinedTypeName') {
       const innerStructName = dataType.namePath;
       const innerStruct = structs.find((x) => x.name == innerStructName);
