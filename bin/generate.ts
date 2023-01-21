@@ -12,10 +12,10 @@ const execute = async () => {
             description: 'Folder that contains target file'
         }, 
     }).argv;
-    const rootFolder = path.resolve(__dirname, '../'); 
+    const rootFolder = path.resolve(__dirname, '../../../'); 
     const targetFile = path.resolve(rootFolder, argv.target);
     await main(targetFile);
-    console.log("Files EIP712 generated :)");
+    console.log("EIP712 generated :)");
 }
 
 execute();
