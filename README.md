@@ -1,7 +1,16 @@
 # Feather
 
-This project generates EIP-712 Solidity contracts and Typescript tests. To try it out: 
-* Add your desired structures to *Structs.sol*
-* Execute `npm run build` to generate and format files
-* Run `npx hardhat test` to launch Typescript tests using Hardhat
+Feather is a NPM package that simplifies development of an infrastructure for EIP712.  
 
+## Installation
+
+```bash
+npm i feather-eip712 --save-dev
+```
+
+## Usage
+```js
+npx feather-eip712 -t path-to-file
+```
+## Contributing
+Feel free to open issues with suggestions of a new functionality and bugfixes/optimizations etc.
