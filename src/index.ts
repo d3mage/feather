@@ -1,15 +1,13 @@
-import { writeFile, loadFile } from './utils/file-interaction';
-import { parseStructs } from './utils/parse';
 import {
   generateTypes,
   generateEIP712Base,
   generateTypehashes,
 } from './signatures';
 import { generateTest } from './signatures/generate-test';
+import { loadFile, writeFile, parseStructs } from './utils';
 
-const main = async () => {
-  const file = await loadFile('./contracts/Structs.sol');
-  //todo: const solidityVersion = parseSolidityVersion(file);
+export const main = async (filePath: string) => {
+  const file = await loadFile(filePath);
   const structs = parseStructs(file);
   const typehashes = generateTypehashes(structs);
   await writeFile('./contracts/Typehashes.sol', typehashes);
@@ -20,5 +18,3 @@ const main = async () => {
   const test = generateTest(structs);
   await writeFile('./test/eip712.spec.ts', test);
 };
-
-main();
