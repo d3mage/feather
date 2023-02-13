@@ -10,7 +10,11 @@ npm i feather-eip712 --save-dev
 
 ## Usage
 ```js
-npx feather-eip712 -t path-to-file
+npx feather-eip712 -t "./contracts/Structs.sol" -os "./contracts/" -ot "./test/"
 ```
+* ```-t``` - Path to target file
+* ```-os``` - Output folder for Solidity files
+* ```-ot``` - Output folder for TS files
+
 ## Contributing
 Feel free to open issues with suggestions of a new functionality and bugfixes/optimizations etc.
