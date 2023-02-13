@@ -6,15 +6,19 @@ import {
 import { generateTest } from './signatures/generate-test';
 import { loadFile, writeFile, parseStructs } from './utils';
 
-export const main = async (filePath: string) => {
+export const main = async (
+  filePath: string,
+  solFolder: string,
+  tsFolder: string,
+) => {
   const file = await loadFile(filePath);
   const structs = parseStructs(file);
   const typehashes = generateTypehashes(structs);
-  await writeFile('./contracts/Typehashes.sol', typehashes);
+  await writeFile(solFolder + '/Typehashes.sol', typehashes);
   const hashingFunctions = generateEIP712Base(structs);
-  await writeFile('./contracts/EIP712Base.sol', hashingFunctions);
+  await writeFile(solFolder + '/EIP712Base.sol', hashingFunctions);
   const types = generateTypes(structs);
-  await writeFile('./test/types.ts', types);
+  await writeFile(tsFolder + '/types.ts', types);
   const test = generateTest(structs);
-  await writeFile('./test/eip712.spec.ts', test);
+  await writeFile(tsFolder + '/eip712.spec.ts', test);
 };
